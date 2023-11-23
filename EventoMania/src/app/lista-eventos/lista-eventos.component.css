@@ -1,0 +1,8 @@
+.list-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.evento-container {
+    width: 350px;
+}

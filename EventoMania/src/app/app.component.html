@@ -1,0 +1,45 @@
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="mb-4">Filtrado por dirección</h2>
+            <select name="tipo" id="tipo" [(ngModel)]="tipo" class="form-control mb-4">
+                <option value="-">-</option>
+                <option value="Razzmatazz">Razzmatazz</option>
+                <option value="Palau Sant Jordi">Palau Sant Jordi</option>
+                <option value="Sant Jordi Club">Sant Jordi Club</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h2 class="mb-4">Próximos Eventos</h2>
+            <div *ngFor="let evento of eventos" class="list-container">
+                <div *ngIf="evento.fecha > fechaFunc() && esElMismoTipo(evento)" class="evento-container card mb-4" style="background-color: #d4edda; border-color: #c3e6cb;">
+                    <div class="card-body">
+                        <h3 class="card-title">{{ evento.titulo | uppercase }}</h3>
+                        <h5 class="card-subtitle">{{ evento.artista }}</h5>
+                        <p class="card-text">{{ evento.fecha | date:"MMMM dd, yyyy HH:mm"}}</p>
+                        <p class="card-text">{{ evento.direccion}}</p>
+                        <p class="card-text">{{ evento.precio | currency: '€'}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <h2 class="mb-4">Eventos Pasados</h2>
+            <div *ngFor="let evento of eventos">
+                <div *ngIf="evento.fecha <= fechaFunc() && esElMismoTipo(evento)" class="card mb-4" style="background-color: #f8d7da; border-color: #f5c6cb;">
+                    <div class="card-body">
+                        <h3 class="card-title">{{ evento.titulo | uppercase }}</h3>
+                        <h5 class="card-subtitle">{{ evento.artista }}</h5>
+                        <p class="card-text">{{ evento.fecha | date:"MMMM dd, yyyy HH:mm"}}</p>
+                        <p class="card-text">{{ evento.direccion}}</p>
+                        <p class="card-text">{{ evento.precio | currency: '€'}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
